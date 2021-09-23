@@ -13,7 +13,6 @@ import java.util.Queue;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        String[] files = {"src/main/resources/in1.txt", "src/main/resources/in2.txt", "src/main/resources/in3.txt", "src/main/resources/in4.txt"};
         try {
             Command command = readArgs(args);
             if (command.dataType.equals(DataType.Integer)) {
@@ -159,17 +158,15 @@ public class Main {
 
     static void superMerge(String[] files, String resultFile, DataType dataType, SortType sortType) throws IOException {
         Queue<String> queue = new LinkedList<>(Arrays.asList(files));
-//        BufferedWriter bw = Files.newBufferedWriter(Paths.get(resultFile));
         new File("tmp").mkdirs();
         int increase = 1;
         String out;
         while (queue.size() != 1) {
-            if(queue.size() == 2) {
+            if (queue.size() == 2) {
                 out = resultFile;
             } else {
                 out = new File("tmp/" + increase + ".txt").getAbsolutePath();
             }
-//            File file = new File("tmp/" + increase + ".txt");
             if (sortType.equals(SortType.Asc)) {
                 queue.offer(mergeFilesAsc(queue.poll(), queue.poll(), out, dataType));
             } else {
@@ -181,8 +178,6 @@ public class Main {
                 .sorted(Comparator.reverseOrder())
                 .map(Path::toFile)
                 .forEach(File::delete);
-//        bw.write(queue.peek());
-//        bw.close();
     }
 
 

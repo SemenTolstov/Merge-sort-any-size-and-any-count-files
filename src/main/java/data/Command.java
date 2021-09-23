@@ -1,7 +1,5 @@
 package data;
 
-import data.DataType;
-import data.SortType;
 
 public class Command {
     public DataType dataType;
